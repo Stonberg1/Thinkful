@@ -1,0 +1,42 @@
+QUESTION 1
+
+Code:
+SELECT maxtemperaturef, zip
+FROM
+    weather
+ORDER BY maxtemperaturef DESC;
+
+ANSWER:
+94063
+
+QUESTION 2
+
+Code:
+SELECT name, dockcount
+FROM
+    stations
+GROUP BY name, dockcount;
+
+Answer:
+(Returned data)
+
+QUESTION 3
+
+Code:
+SELECT min(duration)
+FROM
+    trips
+    
+Answer:
+60
+
+QUESTION 4
+
+Code:
+SELECT end_station, AVG(duration)
+FROM
+    trips
+GROUP BY end_station
+
+Answer:
+(Returned data)
