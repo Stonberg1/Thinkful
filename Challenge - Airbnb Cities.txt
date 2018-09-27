@@ -1,0 +1,71 @@
+What's the most expensive listing? What else can you tell me about the listing?
+
+ANSWER: 
+    - "Large, modern 2br, 2ba renovated 6/16 with patio" hosted by "Jeff"
+    - The listing is in Boston's "Leather District" and is described as a "Entire home/apt"
+
+CODE: (couldn't importy columns as anything
+    SELECT *
+    FROM
+        listings
+    WHERE
+        listings.price = '3999'
+
+What neighborhoods seem to be the most popular?
+
+ANSWER:
+    - By listings, "Dorchester" is listed the most (CODE 1), but the most frequently high priced neighborhoods ($99 and up) are (CODE 2): "Back Bay," "Beacon Hill," "Brighton," "Downtown," "Fenway," the "North End," "South Boston," and the "South End." "Downtown" has by far the most highly priced listings.
+    
+CODE 1:
+    SELECT
+        listings.neighbourhood,
+        COUNT (*)
+    FROM
+        listings
+    GROUP BY
+        listings.neighbourhood
+    ORDER BY
+        COUNT DESC
+        
+    --
+
+CODE 2:
+    SELECT
+        listings.neighbourhood,
+        listings.price,
+        COUNT (*)
+    FROM
+        listings
+    WHERE
+        listings.price > '500'
+    GROUP BY
+        listings.neighbourhood, listings.price
+    ORDER BY
+        listings.neighbourhood, COUNT DESC
+
+What time of year is the cheapest time to go to your city? What about the busiest?
+
+ANSWER: The cheapest time of year appears to be durring the months of August and September (CODE 1). This also appears to be the busiest time.
+
+CODE 1:
+    SELECT
+        listings.last_review,
+        listings.neighbourhood,
+        listings.price
+    FROM
+        listings
+    ORDER BY
+        listings.price ASC, listings.last_review 
+    --
+    
+CODE 2:
+    SELECT
+        COUNT (listings.last_review),
+        listings.last_review,
+        listings.neighbourhood
+    FROM
+        listings
+    GROUP BY 2,3
+    ORDER BY
+        COUNT DESC
+    
